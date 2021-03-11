@@ -15,11 +15,14 @@ export default function BlogPostPage(props: PostWithContent) {
       <Head>
         <title>{title} - NRTH Blog</title>
       </Head>
-      <header>
-        <h2>{title}</h2>
-        <p>{format(parseISO(date), 'dd.MM.yyyy HH:mm')}</p>
-      </header>
-      <article>{hydrated}</article>
+      <div className="rounded-md p-4 dark:bg-gray-800 bg-gray-50 space-y-2">
+        <header>
+          <h2 className="text-4xl font-bold dark:text-gray-300">{title}</h2>
+          <p className="dark:text-gray-500">{format(parseISO(date), 'dd.MM.yyyy HH:mm')}</p>
+        </header>
+        <hr className="border-gray-500" />
+        <article className="prose dark:prose-light max-w-none flex-grow">{hydrated}</article>
+      </div>
     </>
   );
 }

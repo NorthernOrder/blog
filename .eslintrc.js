@@ -9,8 +9,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'prettier',
-    'prettier/@typescript-eslint',
-    'prettier/react',
     'plugin:import/recommended',
     'plugin:import/typescript',
   ],
@@ -25,5 +23,13 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'import'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 0,
+    '@typescript-eslint/no-non-null-assertion': 0,
+    '@typescript-eslint/no-explicit-any': 0,
+    'react/react-in-jsx-scope': 0,
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
