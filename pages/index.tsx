@@ -13,9 +13,7 @@ const PostOverview = ({ title, date, excerpt, slug }: Post) => {
   return (
     <section>
       <Link href={`/blog/${slug}`}>
-        <a>
-          <h2>{title}</h2>
-        </a>
+        <a>{title}</a>
       </Link>
       <p>{format(parseISO(date), 'dd.MM.yyyy HH:mm')}</p>
       <p>{excerpt}</p>

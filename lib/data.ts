@@ -19,9 +19,10 @@ const extractPost = (fileContent: string, fileName: string): Post => {
     data: { title, date },
     excerpt,
   } = matter(fileContent, { excerpt: true }) as Matter;
+
   return {
     title,
-    content,
+    content: content.split('---\n')[1],
     excerpt: excerpt!,
     slug: fileName.slice(0, -3),
     date: date.toISOString(),

@@ -8,6 +8,8 @@ import { PostWithContent } from '../../types/Post';
 export default function BlogPostPage(props: PostWithContent) {
   const { title, content, date } = props;
 
+  const hydrated = hydrate(content);
+
   return (
     <>
       <Head>
@@ -17,14 +19,13 @@ export default function BlogPostPage(props: PostWithContent) {
         <h2>{title}</h2>
         <p>{format(parseISO(date), 'dd.MM.yyyy HH:mm')}</p>
       </header>
-      <article>{hydrate(content)}</article>
+      <article>{hydrated}</article>
     </>
   );
 }
 
 export const getStaticProps: GetStaticProps<PostWithContent> = async (ctx) => {
   const post = await getPostBySlug(ctx.params?.['slug'] as string);
-  console.log(post)
 
   return {
     props: post,
@@ -32,9 +33,7 @@ export const getStaticProps: GetStaticProps<PostWithContent> = async (ctx) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = getSlugs();
-
-  console.log(slugs)
+  const slugs = getSlugs().map((slug) => ({ params: { slug } }));
 
   return {
     paths: slugs,
